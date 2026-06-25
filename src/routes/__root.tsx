@@ -77,19 +77,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "ABERO — Toy Manufacturing & China Sourcing Partner" },
+      {
+        name: "description",
+        content:
+          "ABERO is a Shantou-based toy manufacturing and China sourcing partner offering OEM/ODM, quality control, and export support for international brands.",
+      },
+      { name: "author", content: "ABERO" },
+      { property: "og:title", content: "ABERO — Toy Manufacturing & China Sourcing Partner" },
+      {
+        property: "og:description",
+        content:
+          "OEM/ODM toy solutions and China sourcing support for brands, importers, distributors, and private label businesses.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:site_name", content: "ABERO" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap",
       },
     ],
   }),
