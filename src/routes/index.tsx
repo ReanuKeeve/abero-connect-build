@@ -106,7 +106,7 @@ function HomePage() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/85 backdrop-blur">
               <span className="size-1.5 rounded-full bg-brand" />
-              OEM · ODM · China Sourcing
+              OEM · ODM · Sourcing
             </div>
             <h1 className="mt-5 text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-6xl">
               Toy Manufacturing &amp; Sourcing Partner
