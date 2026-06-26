@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { MessageCircle, Mail, MapPin, Phone } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
 import { ContactForm } from "@/components/site/ContactForm";
+import { CTAButton } from "@/components/site/CTAButton";
+import { Modal } from "@/components/site/Modal";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -22,12 +25,14 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const [wechatOpen, setWechatOpen] = useState(false);
+
   return (
     <SiteLayout>
       <PageHero
         label="Contact Us"
         title="Start your manufacturing or sourcing project."
-        subtitle="Send us your product idea, target price, required quantity, market, and compliance requirements. Our team will help evaluate the best production or sourcing solution."
+        subtitle="Send us your product idea, target price, required quantity, market, and compliance requirements. Our team in Shantou, China will help evaluate the best production or sourcing solution."
       />
 
       <section className="bg-background">
@@ -56,6 +61,19 @@ function ContactPage() {
               />
             </div>
 
+            <div className="mt-6 flex flex-wrap gap-3">
+              <CTAButton href="https://wa.me/" variant="ghost-dark" icon={<Phone className="size-4" />}>
+                WhatsApp
+              </CTAButton>
+              <CTAButton
+                onClick={() => setWechatOpen(true)}
+                variant="ghost-dark"
+                icon={<MessageCircle className="size-4" />}
+              >
+                WeChat QR
+              </CTAButton>
+            </div>
+
             <div className="mt-8 rounded-2xl border border-border bg-surface p-6">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-accent">
                 Office hours
@@ -72,6 +90,20 @@ function ContactPage() {
           <ContactForm />
         </div>
       </section>
+
+      <Modal open={wechatOpen} onClose={() => setWechatOpen(false)} title="WeChat">
+        <div className="flex flex-col items-center text-center">
+          <div className="grid size-56 place-items-center rounded-2xl border border-border bg-surface">
+            <div className="grid size-44 place-items-center rounded-lg bg-card text-xs text-muted-foreground">
+              QR Code Placeholder
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Scan with WeChat to add ABERO. WeChat ID:{" "}
+            <span className="font-semibold text-foreground">abero-id</span>
+          </p>
+        </div>
+      </Modal>
     </SiteLayout>
   );
 }
