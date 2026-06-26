@@ -33,6 +33,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Show files after build
+        run: |
+          pwd
+          ls -la
+          find . -maxdepth 3 -type d
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
