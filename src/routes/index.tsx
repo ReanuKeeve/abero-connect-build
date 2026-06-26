@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin, Sparkles, CheckCircle2, Play, Network } from "lucide-react";
+import { ArrowRight, MapPin, CheckCircle2, MessageCircle, Phone } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
 import { TrustCards } from "@/components/site/TrustCards";
@@ -8,18 +9,22 @@ import { CTAButton } from "@/components/site/CTAButton";
 import { ImageCarousel } from "@/components/site/ImageCarousel";
 import { CertBadges } from "@/components/site/CertBadges";
 import { ContactForm } from "@/components/site/ContactForm";
+import { VideoPlayer } from "@/components/site/VideoPlayer";
+import { SupplierNetwork } from "@/components/site/SupplierNetwork";
+import { Modal } from "@/components/site/Modal";
 import { heroSlides, aboutSlides, gallerySlides, img } from "@/lib/site-images";
+import factoryTour from "@/assets/factory-tour.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ABERO — Toy Manufacturing & China Sourcing Partner" },
+      { title: "ABERO — Toy Manufacturing & Sourcing Partner" },
       {
         name: "description",
         content:
           "OEM/ODM toy solutions and China sourcing support for international brands, importers, distributors, and private label businesses.",
       },
-      { property: "og:title", content: "ABERO — Toy Manufacturing & China Sourcing Partner" },
+      { property: "og:title", content: "ABERO — Toy Manufacturing & Sourcing Partner" },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -83,6 +88,8 @@ const SOURCING = [
 ];
 
 function HomePage() {
+  const [wechatOpen, setWechatOpen] = useState(false);
+
   return (
     <SiteLayout>
       {/* HERO */}
@@ -92,31 +99,25 @@ function HomePage() {
           className="absolute inset-0 opacity-70"
           style={{
             background:
-              "radial-gradient(60% 50% at 15% 10%, color-mix(in oklab, var(--brand) 30%, transparent), transparent 70%), radial-gradient(45% 40% at 95% 20%, color-mix(in oklab, var(--cyan-accent) 25%, transparent), transparent 70%), radial-gradient(40% 50% at 60% 100%, color-mix(in oklab, var(--blue-accent) 22%, transparent), transparent 70%)",
+              "radial-gradient(55% 50% at 15% 10%, color-mix(in oklab, var(--blue-accent) 32%, transparent), transparent 70%), radial-gradient(45% 40% at 95% 20%, color-mix(in oklab, var(--cyan-accent) 22%, transparent), transparent 70%), radial-gradient(35% 45% at 70% 100%, color-mix(in oklab, var(--violet-accent) 18%, transparent), transparent 70%)",
           }}
         />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-10 lg:px-8 lg:py-24">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/85 backdrop-blur">
-              <Sparkles className="size-3.5 text-cyan" />
+              <span className="size-1.5 rounded-full bg-brand" />
               OEM · ODM · China Sourcing
             </div>
             <h1 className="mt-5 text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-6xl">
-              Toy Manufacturing &{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{ backgroundImage: "var(--gradient-brand)" }}
-              >
-                Sourcing Partner
-              </span>
+              Toy Manufacturing &amp; Sourcing Partner
             </h1>
-            <div className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan">
+            <div className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan sm:text-xs">
               <MapPin className="size-3.5" />
-              Shantou · China · World
+              SHANTOU · CHINA · WORLD
             </div>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/75">
-              OEM / ODM toy solutions and China sourcing support for global brands, importers,
-              distributors, and private label businesses.
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
+              OEM / ODM toy solutions and China sourcing support for international brands,
+              importers, distributors, and private label businesses.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <CTAButton to="/contact" icon={<ArrowRight className="size-4" />}>
@@ -131,11 +132,11 @@ function HomePage() {
               {[
                 { k: "1000+", v: "Factories" },
                 { k: "20+", v: "Years export" },
-                { k: "Global", v: "Markets" },
+                { k: "Worldwide", v: "Markets" },
               ].map((s) => (
                 <div key={s.v}>
                   <dt className="text-2xl font-semibold text-white">{s.k}</dt>
-                  <dd className="text-xs uppercase tracking-wider text-white/60">{s.v}</dd>
+                  <dd className="text-[11px] uppercase tracking-wider text-white/60">{s.v}</dd>
                 </div>
               ))}
             </dl>
@@ -197,28 +198,28 @@ function HomePage() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((p) => (
               <article
                 key={p.title}
                 className="group overflow-hidden rounded-2xl bg-card shadow-card transition-all hover:shadow-elevated"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[5/4] overflow-hidden">
                   <img
                     src={p.img}
                     alt={p.title}
                     width={800}
-                    height={600}
+                    height={640}
                     loading="lazy"
                     className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   />
-                  <span className="absolute left-3 top-3 inline-flex size-9 items-center justify-center rounded-lg bg-white/95 text-xs font-bold text-navy-deep shadow">
+                  <span className="absolute left-3 top-3 inline-flex size-10 items-center justify-center rounded-lg bg-white/95 text-sm font-bold text-navy-deep shadow">
                     {p.n}
                   </span>
                 </div>
                 <div className="p-5">
                   <h3 className="text-lg font-semibold text-foreground">{p.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{p.text}</p>
                 </div>
               </article>
             ))}
@@ -248,38 +249,18 @@ function HomePage() {
               Show the complete process in 2–3 minutes.
             </h2>
             <p className="mt-3 text-lg text-muted-foreground">
-              A short factory tour video can show the office, showroom, production, warehouse,
+              A short factory tour video showing the office, showroom, production, warehouse,
               quality control, and container loading process.
             </p>
           </div>
 
-          <div className="relative mt-10 overflow-hidden rounded-3xl shadow-elevated">
-            <img
-              src={img.factoryExterior}
-              alt="Factory tour video preview"
-              width={1600}
-              height={900}
-              loading="lazy"
-              className="aspect-video w-full object-cover"
+          <div className="mt-10">
+            <VideoPlayer
+              src={factoryTour.url}
+              poster={img.factoryExterior}
+              label="Factory Tour"
+              title="Inside ABERO — production, QC, and export floor."
             />
-            <div className="absolute inset-0 bg-navy-deep/55" />
-            <button
-              type="button"
-              className="absolute inset-0 grid place-items-center text-white"
-              aria-label="Play factory tour video"
-            >
-              <span className="grid size-20 place-items-center rounded-full bg-white text-navy-deep shadow-2xl transition hover:scale-105 sm:size-24">
-                <Play className="ml-1 size-9 fill-current sm:size-10" />
-              </span>
-              <span className="absolute bottom-6 left-6 right-6 text-left sm:bottom-8 sm:left-8">
-                <span className="block text-xs font-semibold uppercase tracking-[0.2em] text-cyan">
-                  Factory Tour · Coming soon
-                </span>
-                <span className="mt-1 block text-lg font-semibold sm:text-xl">
-                  Inside ABERO — production, QC, and export floor.
-                </span>
-              </span>
-            </button>
           </div>
         </div>
       </section>
@@ -288,10 +269,10 @@ function HomePage() {
       <section className="relative overflow-hidden bg-navy-deep text-white">
         <div
           aria-hidden
-          className="absolute inset-0 opacity-60"
+          className="absolute inset-0 opacity-50"
           style={{
             background:
-              "radial-gradient(50% 50% at 80% 10%, color-mix(in oklab, var(--cyan-accent) 22%, transparent), transparent 70%), radial-gradient(40% 40% at 10% 90%, color-mix(in oklab, var(--violet-accent) 22%, transparent), transparent 70%)",
+              "radial-gradient(50% 50% at 80% 10%, color-mix(in oklab, var(--blue-accent) 22%, transparent), transparent 70%), radial-gradient(40% 40% at 10% 90%, color-mix(in oklab, var(--cyan-accent) 18%, transparent), transparent 70%)",
           }}
         />
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
@@ -299,12 +280,11 @@ function HomePage() {
             <div>
               <SectionLabel variant="dark">China Sourcing Services</SectionLabel>
               <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Your China sourcing partner.</h2>
-              <p className="mt-4 text-lg leading-relaxed text-white/75">
+              <p className="mt-4 text-lg leading-relaxed text-white/80">
                 ABERO helps clients source products throughout China by connecting product demand
                 with suitable factories, practical quality control, and export-ready logistics.
               </p>
-              <p className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-sm font-medium text-cyan">
-                <Network className="size-4" />
+              <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-sm font-semibold text-cyan">
                 1000+ factories in our network
               </p>
 
@@ -312,10 +292,10 @@ function HomePage() {
                 {SOURCING.map((s) => (
                   <div
                     key={s.title}
-                    className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm transition hover:bg-white/[0.07]"
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition hover:bg-white/[0.07]"
                   >
                     <h3 className="text-base font-semibold text-white">{s.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-white/70">{s.text}</p>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-white/75">{s.text}</p>
                   </div>
                 ))}
               </div>
@@ -327,7 +307,7 @@ function HomePage() {
               </div>
             </div>
 
-            <SupplierNetworkGraphic />
+            <SupplierNetwork />
           </div>
         </div>
       </section>
@@ -354,10 +334,10 @@ function HomePage() {
       <section className="relative overflow-hidden bg-navy-deep text-white">
         <div
           aria-hidden
-          className="absolute inset-0 opacity-60"
+          className="absolute inset-0 opacity-50"
           style={{
             background:
-              "radial-gradient(50% 50% at 15% 100%, color-mix(in oklab, var(--brand) 25%, transparent), transparent 70%), radial-gradient(50% 40% at 90% 0%, color-mix(in oklab, var(--blue-accent) 22%, transparent), transparent 70%)",
+              "radial-gradient(50% 50% at 15% 100%, color-mix(in oklab, var(--blue-accent) 22%, transparent), transparent 70%), radial-gradient(50% 40% at 90% 0%, color-mix(in oklab, var(--cyan-accent) 18%, transparent), transparent 70%)",
           }}
         />
         <div className="relative mx-auto grid max-w-7xl items-start gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
@@ -366,20 +346,29 @@ function HomePage() {
             <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">
               Start your manufacturing or sourcing project.
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-white/75">
+            <p className="mt-4 text-lg leading-relaxed text-white/80">
               Send us your product idea, target price, required quantity, market, and compliance
-              requirements. Our team will help evaluate the best production or sourcing solution.
+              requirements. Our team in Shantou, China will help evaluate the best production or
+              sourcing solution.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <CTAButton href="https://wa.me/" variant="outline-light">
+              <CTAButton
+                href="https://wa.me/"
+                variant="outline-light"
+                icon={<Phone className="size-4" />}
+              >
                 WhatsApp
               </CTAButton>
-              <CTAButton onClick={() => {}} variant="outline-light">
+              <CTAButton
+                onClick={() => setWechatOpen(true)}
+                variant="outline-light"
+                icon={<MessageCircle className="size-4" />}
+              >
                 WeChat QR
               </CTAButton>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-cyan hover:text-white transition"
+                className="inline-flex items-center gap-2 self-center text-sm font-semibold text-cyan hover:text-white transition"
               >
                 Or visit contact page
                 <ArrowRight className="size-4" />
@@ -390,98 +379,20 @@ function HomePage() {
           <ContactForm />
         </div>
       </section>
-    </SiteLayout>
-  );
-}
 
-function SupplierNetworkGraphic() {
-  const nodes = [
-    { x: 18, y: 28 },
-    { x: 38, y: 16 },
-    { x: 62, y: 22 },
-    { x: 82, y: 36 },
-    { x: 26, y: 60 },
-    { x: 48, y: 72 },
-    { x: 72, y: 64 },
-    { x: 88, y: 78 },
-  ];
-  const center = { x: 50, y: 46 };
-  return (
-    <div className="relative aspect-square w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-2 backdrop-blur-sm">
-      <svg viewBox="0 0 100 100" className="size-full" aria-hidden>
-        <defs>
-          <radialGradient id="grad" cx="50%" cy="46%" r="60%">
-            <stop offset="0%" stopColor="oklch(0.78 0.13 215)" stopOpacity="0.22" />
-            <stop offset="100%" stopColor="oklch(0.78 0.13 215)" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <circle cx={center.x} cy={center.y} r="44" fill="url(#grad)" />
-        {[40, 30, 20, 10].map((r) => (
-          <circle
-            key={r}
-            cx={center.x}
-            cy={center.y}
-            r={r}
-            fill="none"
-            stroke="oklch(1 0 0 / 0.08)"
-            strokeWidth="0.3"
-          />
-        ))}
-        {nodes.map((n, i) => (
-          <line
-            key={i}
-            x1={center.x}
-            y1={center.y}
-            x2={n.x}
-            y2={n.y}
-            stroke="oklch(0.78 0.13 215 / 0.45)"
-            strokeWidth="0.4"
-            strokeDasharray="0.8 0.8"
-          />
-        ))}
-        {nodes.map((n, i) => (
-          <g key={`n${i}`}>
-            <circle cx={n.x} cy={n.y} r="2" fill="oklch(0.78 0.13 215)" />
-            <circle
-              cx={n.x}
-              cy={n.y}
-              r="3.5"
-              fill="none"
-              stroke="oklch(0.78 0.13 215 / 0.35)"
-              strokeWidth="0.3"
-            />
-          </g>
-        ))}
-        <g>
-          <circle cx={center.x} cy={center.y} r="5" fill="oklch(0.65 0.27 330)" />
-          <circle
-            cx={center.x}
-            cy={center.y}
-            r="8"
-            fill="none"
-            stroke="oklch(0.65 0.27 330 / 0.4)"
-            strokeWidth="0.5"
-          />
-          <text
-            x={center.x}
-            y={center.y + 11}
-            textAnchor="middle"
-            fontSize="3.5"
-            fontWeight="700"
-            fill="white"
-          >
-            ABERO
-          </text>
-        </g>
-      </svg>
-      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white/70">
-        <span className="inline-flex items-center gap-1.5">
-          <span className="size-2 rounded-full bg-brand" /> ABERO HQ
-        </span>
-        <span className="inline-flex items-center gap-1.5">
-          <span className="size-2 rounded-full bg-cyan" /> Partner factories
-        </span>
-      </div>
-    </div>
+      <Modal open={wechatOpen} onClose={() => setWechatOpen(false)} title="WeChat">
+        <div className="flex flex-col items-center text-center">
+          <div className="grid size-56 place-items-center rounded-2xl border border-border bg-surface">
+            <div className="grid size-44 place-items-center rounded-lg bg-card text-xs text-muted-foreground">
+              QR Code Placeholder
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Scan with WeChat to add ABERO. WeChat ID:{" "}
+            <span className="font-semibold text-foreground">abero-id</span>
+          </p>
+        </div>
+      </Modal>
+    </SiteLayout>
   );
 }

@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const NAV = [
   { to: "/about", label: "About Us" },
   { to: "/manufacturing", label: "Manufacturing" },
-  { to: "/china-sourcing", label: "China Sourcing" },
+  { to: "/china-sourcing", label: "Sourcing" },
   { to: "/news", label: "News" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -34,14 +34,14 @@ export function Header() {
       className={cn(
         "sticky top-0 z-50 w-full transition-all",
         scrolled
-          ? "bg-background/85 backdrop-blur-md border-b border-border shadow-[0_1px_0_oklch(0.18_0.05_260/0.04)]"
-          : "bg-background/70 backdrop-blur"
+          ? "bg-background/90 backdrop-blur-md border-b border-border"
+          : "bg-background/80 backdrop-blur"
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:px-8">
         <Link to="/" className="flex shrink-0 items-center" aria-label="ABERO home">
-          <Logo height={44} className="sm:hidden" />
-          <Logo height={52} className="hidden sm:block" />
+          <Logo height={40} className="sm:hidden" />
+          <Logo height={46} className="hidden sm:block" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
