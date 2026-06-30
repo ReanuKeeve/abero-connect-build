@@ -30,7 +30,7 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div>
             <div className="inline-flex items-center rounded-2xl bg-white p-3 shadow-md">
-              <Logo height={40} />
+              <Logo height={56} />
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/70">
               Toy manufacturing and sourcing partner based in Shantou, China. OEM / ODM
