@@ -119,14 +119,6 @@ function HomePage() {
               OEM / ODM toy solutions and China sourcing support for international brands,
               importers, distributors, and private label businesses.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <CTAButton to="/contact" icon={<ArrowRight className="size-4" />}>
-                Send Inquiry
-              </CTAButton>
-              <CTAButton to="/manufacturing" variant="outline-light">
-                View Capabilities
-              </CTAButton>
-            </div>
           </div>
 
           <div className="mt-12">
@@ -145,6 +137,20 @@ function HomePage() {
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      {/* HERO CTA BAR */}
+      <section className="bg-navy-deep text-white">
+        <div className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8 lg:pb-18">
+          <div className="flex flex-wrap justify-center gap-3">
+            <CTAButton to="/contact" icon={<ArrowRight className="size-4" />}>
+              Send Inquiry
+            </CTAButton>
+            <CTAButton to="/manufacturing" variant="outline-light">
+              View Capabilities
+            </CTAButton>
+          </div>
         </div>
       </section>
 
