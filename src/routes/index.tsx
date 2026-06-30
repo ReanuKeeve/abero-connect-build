@@ -96,14 +96,14 @@ function HomePage() {
       <section className="relative overflow-hidden bg-navy-deep text-white">
         <div
           aria-hidden
-          className="absolute inset-0 opacity-70"
+          className="pointer-events-none absolute inset-0 opacity-70"
           style={{
             background:
-              "radial-gradient(55% 50% at 15% 10%, color-mix(in oklab, var(--blue-accent) 32%, transparent), transparent 70%), radial-gradient(45% 40% at 95% 20%, color-mix(in oklab, var(--cyan-accent) 22%, transparent), transparent 70%), radial-gradient(35% 45% at 70% 100%, color-mix(in oklab, var(--violet-accent) 18%, transparent), transparent 70%)",
+              "radial-gradient(55% 50% at 15% 10%, color-mix(in oklab, var(--blue-accent) 32%, transparent), transparent 70%), radial-gradient(45% 40% at 95% 20%, color-mix(in oklab, var(--cyan-accent) 22%, transparent), transparent 70%)",
           }}
         />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-10 lg:px-8 lg:py-24">
-          <div>
+        <div className="relative mx-auto max-w-7xl px-4 pt-12 pb-16 sm:px-6 lg:px-8 lg:pt-16 lg:pb-20">
+          <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/85 backdrop-blur">
               <span className="size-1.5 rounded-full bg-brand" />
               OEM · ODM · Sourcing
@@ -115,7 +115,7 @@ function HomePage() {
               <MapPin className="size-3.5" />
               SHANTOU · CHINA · WORLD
             </div>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
               OEM / ODM toy solutions and China sourcing support for international brands,
               importers, distributors, and private label businesses.
             </p>
@@ -127,24 +127,24 @@ function HomePage() {
                 View Capabilities
               </CTAButton>
             </div>
-
-            <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-white/10 pt-6">
-              {[
-                { k: "1000+", v: "Factories" },
-                { k: "20+", v: "Years export" },
-                { k: "Worldwide", v: "Markets" },
-              ].map((s) => (
-                <div key={s.v}>
-                  <dt className="text-2xl font-semibold text-white">{s.k}</dt>
-                  <dd className="text-[11px] uppercase tracking-wider text-white/60">{s.v}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
-          <div>
+          <div className="mt-12">
             <HeroCarousel slides={heroSlides} />
           </div>
+
+          <dl className="mt-10 grid max-w-2xl grid-cols-3 gap-4 border-t border-white/10 pt-6">
+            {[
+              { k: "1000+", v: "Factories" },
+              { k: "20+", v: "Years export" },
+              { k: "Worldwide", v: "Markets" },
+            ].map((s) => (
+              <div key={s.v}>
+                <dt className="text-2xl font-semibold text-white">{s.k}</dt>
+                <dd className="text-[11px] uppercase tracking-wider text-white/60">{s.v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
