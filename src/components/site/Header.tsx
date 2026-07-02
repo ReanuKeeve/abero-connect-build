@@ -102,8 +102,9 @@ export function Header() {
                 );
               })}
             </nav>
-            <div className="mt-4">
-              <CTAButton to="/contact" className="w-full" icon={<ArrowRight className="size-4" />}>
+            <div className="mt-4 flex items-center gap-2">
+              <ThemeSwitcher />
+              <CTAButton to="/contact" className="flex-1" icon={<ArrowRight className="size-4" />}>
                 Send Inquiry
               </CTAButton>
             </div>
