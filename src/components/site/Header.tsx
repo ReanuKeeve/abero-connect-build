@@ -4,6 +4,7 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import { Logo } from "./Logo";
 import { CTAButton } from "./CTAButton";
 import { cn } from "@/lib/utils";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 const NAV = [
   { to: "/about", label: "About Us" },
