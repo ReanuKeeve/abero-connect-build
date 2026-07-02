@@ -66,6 +66,7 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-2">
+          <ThemeSwitcher />
           <CTAButton to="/contact" icon={<ArrowRight className="size-4" />}>
             Send Inquiry
           </CTAButton>
