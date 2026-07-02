@@ -1,4 +1,4 @@
-import logoAsset from "@/assets/abero-logo.asset.json";
+import logoAsset from "@/assets/abero-logo-optimized.png.asset.json";
 
 interface LogoProps {
   className?: string;
