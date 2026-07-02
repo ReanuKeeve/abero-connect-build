@@ -39,10 +39,10 @@ export function Header() {
           : "bg-background/80 backdrop-blur"
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:px-8">
         <Link to="/" className="flex shrink-0 items-center" aria-label="ABERO home">
-          <span className="sm:hidden"><Logo height={52} /></span>
-          <span className="hidden sm:inline-block"><Logo height={64} /></span>
+          <span className="sm:hidden"><Logo height={40} /></span>
+          <span className="hidden sm:inline-block"><Logo height={48} /></span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
